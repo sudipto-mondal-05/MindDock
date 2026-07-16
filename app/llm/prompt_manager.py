@@ -45,4 +45,20 @@ class PromptManager:
 
     def get_quiz_prompt(self, text: str, num_questions: int, difficulty: str) -> str:
         """Build a quiz-generation prompt."""
-        raise NotImplementedError
+        difficulty_map = {
+            "easy": "simple and beginner-friendly",
+            "medium": "balanced and moderately challenging",
+            "hard": "challenging and detailed",
+        }
+        difficulty_style = difficulty_map.get(difficulty, "balanced and moderately challenging")
+
+        return (
+            f"Create {num_questions} multiple-choice questions from the following document text. "
+            f"Make the questions {difficulty_style}. "
+            "Return ONLY valid JSON in this exact format: "
+            "[{\"question\": \"...\", \"options\": [\"...\", \"...\", \"...\", \"...\"], \"correct_answer\": \"...\", \"explanation\": \"...\"}] "
+            "Do not include Markdown, commentary, or surrounding text. "
+            "Each question must have exactly four options. "
+            "Keep the content grounded in the provided text and avoid invented facts.\n\n"
+            f"Document text:\n{text}\n\nQuiz JSON:"
+        )
