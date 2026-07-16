@@ -1,0 +1,13 @@
+/* MindDock AI - custom Streamlit theming
+   TODO: define final color palette, spacing, and typography */
+
+:root {
+    --minddock-primary: #4F46E5;
+    --minddock-bg: #0E1117;
+    --minddock-card-bg: #161A23;
+}
+
+/* Placeholder rules - refine once design system is finalized */
+.stApp {
+    background-color: var(--minddock-bg);
+}
